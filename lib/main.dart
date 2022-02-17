@@ -6,19 +6,24 @@ class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange, )
-            .copyWith( secondary: Colors.green, background: Colors.purple),
+      theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.teal,
         textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.yellow)),
-        // backgroundColor: Colors.black,
-        // colorSchemeSeed: ColorScheme.fromSwatch(backgroundColor: Colors.black)
-
-        // primaryColor: Color(0x0A0E99),
-        // secondaryHeaderColor: Colors.purple,
-
-        // colorScheme:
+        primaryColor: Colors.orange,
       ),
+      // ThemeData(
+      //   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange, )
+      //       .copyWith( secondary: Colors.green, background: Colors.purple),
+      //   scaffoldBackgroundColor: Colors.teal,
+      //   textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.yellow)),
+      //   // backgroundColor: Colors.black,
+      //   // colorSchemeSeed: ColorScheme.fromSwatch(backgroundColor: Colors.black)
+      //
+      //   // primaryColor: Color(0x0A0E99),
+      //   // secondaryHeaderColor: Colors.purple,
+      //
+      //   // colorScheme:
+      // ),
       home: InputPage(),
     );
   }
@@ -40,8 +45,11 @@ class _InputPageState extends State<InputPage> {
       body: Center(
         child: Text('Body Text'),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+      floatingActionButton: Theme(
+        data: ThemeData(accentColor: Colors.pink),
+        child: FloatingActionButton(
+          child: Icon(Icons.add),
+        ),
       ),
     );
   }

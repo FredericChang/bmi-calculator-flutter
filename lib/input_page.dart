@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const bottomContainerHeight = 80.0;
+const Color colorNumber = Color(0xFF1D1E33);
+const Color bottomColor = Color(0xFFEB1555);
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -18,26 +22,33 @@ class _InputPageState extends State<InputPage> {
           Expanded(child: Row(
             children: <Widget>[
               Expanded(
-                  child: ReusableCard()
+                  child: ReusableCard(colour : colorNumber)
               ),
               Expanded(
-                  child: ReusableCard()
+                  child: ReusableCard(colour : colorNumber)
               ),
             ],
           )),
           Expanded(
-              child: ReusableCard()
+              child: ReusableCard(colour : colorNumber)
           ),
           Expanded(child: Row(
             children: <Widget>[
               Expanded(
-                  child: ReusableCard()
+                  child: ReusableCard(colour : colorNumber)
               ),
               Expanded(
-                  child: ReusableCard()
+                  child: ReusableCard(colour : colorNumber)
               ),
             ],
           )),
+
+          Container(
+            color: bottomColor,
+            margin: EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: bottomContainerHeight,
+          ),
         ],
       )
     );
@@ -46,9 +57,20 @@ class _InputPageState extends State<InputPage> {
 
 //Refactor with StatelessWidget
 class ReusableCard extends StatelessWidget {
-  const ReusableCard({
-    Key key,
-  }) : super(key: key);
+
+  ///stateless could not be changed.
+  ///this will allowed user to assign Color
+  ///Initializing
+  /// @required meant you have to add
+  ReusableCard({@required this.colour});
+
+  /// property
+  /// Final could not be changed. verse Const keyword.
+  final Color colour;
+
+  // const ReusableCard({
+  //   Key key,
+  // }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +78,7 @@ class ReusableCard extends StatelessWidget {
       margin: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: Color(0xFF1D1E33),
+        color: colour,
       ),
     );
   }

@@ -18,28 +18,30 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
 
   Gender selectedGender;
+  int height = 180;
   Color maleCardColour = kInactivateColour;
   Color femaleCardColour = kInactivateColour;
 
-  void updatedColour(Gender selectedGender) {
-    if (selectedGender == Gender.female) {
-      if (femaleCardColour == kInactivateColour) {
-        femaleCardColour = kActivateColour;
-        maleCardColour = kInactivateColour;
 
-      } else {
-        femaleCardColour = kInactivateColour;
-      }
-    }
-    if (selectedGender == Gender.male ) {
-      if (maleCardColour == kInactivateColour) {
-        maleCardColour = kActivateColour;
-        femaleCardColour = kInactivateColour;
-      } else {
-        maleCardColour = kInactivateColour;
-      }
-    }
-  }
+  // void updatedColour(Gender selectedGender) {
+  //   if (selectedGender == Gender.female) {
+  //     if (femaleCardColour == kInactivateColour) {
+  //       femaleCardColour = kActivateColour;
+  //       maleCardColour = kInactivateColour;
+  //
+  //     } else {
+  //       femaleCardColour = kInactivateColour;
+  //     }
+  //   }
+  //   if (selectedGender == Gender.male ) {
+  //     if (maleCardColour == kInactivateColour) {
+  //       maleCardColour = kActivateColour;
+  //       femaleCardColour = kInactivateColour;
+  //     } else {
+  //       maleCardColour = kInactivateColour;
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class _InputPageState extends State<InputPage> {
           title: Text('BMI CALCULATOR'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(child: Row(
               children: <Widget>[
@@ -80,8 +83,36 @@ class _InputPageState extends State<InputPage> {
                 child: ReusableCard(
                   colour : kActivateColour,
                   cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Height'),
+                      Text(
+                          'Height',
+                          style: kLabelTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: <Widget>[
+                          Text(height.toString(),
+                          style: kWeightstyle,),
+                          Text('cm',
+                            style: kLabelTextStyle,),
+                          Slider(
+                            value: height.toDouble(),
+                            min: 120.0,
+                            max: 220.0,
+                            activeColor: Colors.yellow,
+                            inactiveColor: Colors.green,
+                            onChanged: (double newValue){
+                              print(newValue);
+                              setState(() {
+                                height = newValue.round();
+                              });
+                            },
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 )
@@ -96,7 +127,6 @@ class _InputPageState extends State<InputPage> {
                 ),
               ],
             )),
-
             Container(
               color: kBottomContainerColor,
               margin: EdgeInsets.only(top: 10.0),

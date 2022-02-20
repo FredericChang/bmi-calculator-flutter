@@ -25,7 +25,7 @@ class cardChildWidget extends StatelessWidget {
           height: 15.0,
         ),
         Text(textName,
-          style: labelTextStyle)
+          style: kLabelTextStyle)
       ],
     );
   }

@@ -20,27 +20,28 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
-  Color maleCardColour = inactivateColour;
-  Color femaleCardColour = inactivateColour;
-
-  void updatedColour(Gender selectedGender) {
-    if (selectedGender == Gender.female) {
-      if (femaleCardColour == inactivateColour) {
-        femaleCardColour = colorNumber;
-        maleCardColour = inactivateColour;
-
-      } else {
-        femaleCardColour = inactivateColour;
-      }
-    }
-    if (selectedGender == Gender.male ) {
-      if (maleCardColour == inactivateColour) {
-        maleCardColour = colorNumber;
-        femaleCardColour = inactivateColour;
-      } else {
-        maleCardColour = inactivateColour;
-      }
-    }
+  Gender selectedGender;
+  // Color maleCardColour = inactivateColour;
+  // Color femaleCardColour = inactivateColour;
+  //
+  // void updatedColour(Gender selectedGender) {
+  //   if (selectedGender == Gender.female) {
+  //     if (femaleCardColour == inactivateColour) {
+  //       femaleCardColour = colorNumber;
+  //       maleCardColour = inactivateColour;
+  //
+  //     } else {
+  //       femaleCardColour = inactivateColour;
+  //     }
+  //   }
+  //   if (selectedGender == Gender.male ) {
+  //     if (maleCardColour == inactivateColour) {
+  //       maleCardColour = colorNumber;
+  //       femaleCardColour = inactivateColour;
+  //     } else {
+  //       maleCardColour = inactivateColour;
+  //     }
+  //   }
   }
 
   @override
@@ -59,11 +60,11 @@ class _InputPageState extends State<InputPage> {
                       onTap: (){
                         print('Female');
                         setState(() {
-                          updatedColour(Gender.female);
+                          selectedGender = Gender.female;
                         });
                       },
                       child: ReusableCard(
-                        colour : femaleCardColour,
+                        colour : selectedGender == Gender.female ? colorNumber : inactivateColour,
                         cardChild: cardChildWidget(icon: FontAwesomeIcons.mars, colour: Colors.pink, textName: 'Female',),
                       ),
                     )
@@ -73,11 +74,11 @@ class _InputPageState extends State<InputPage> {
                       onTap: (){
                         print('Male');
                         setState(() {
-                          updatedColour(Gender.male);
+                          selectedGender = Gender.male;
                         });
                       },
                       child: ReusableCard(
-                        colour : maleCardColour,
+                        colour : selectedGender == Gender.male ? colorNumber : inactivateColour,
                         cardChild: cardChildWidget(icon: FontAwesomeIcons.facebook, colour: Colors.pink, textName: 'Male',),
                       ),
                     )

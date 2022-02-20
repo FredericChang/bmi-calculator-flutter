@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'resuableCard.dart';
 import 'icon_content.dart';
+import 'constants.dart';
 
-const bottomContainerHeight = 80.0;
-const Color colorNumber = Color(0xFF1D1E33);
-const inactivateColour = Color(0xFF111328);
-const Color bottomColor = Color(0xFFEB1555);
 
 enum Gender {
   male,
@@ -21,25 +18,25 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
 
   Gender selectedGender;
-  Color maleCardColour = inactivateColour;
-  Color femaleCardColour = inactivateColour;
+  Color maleCardColour = kInactivateColour;
+  Color femaleCardColour = kInactivateColour;
 
   void updatedColour(Gender selectedGender) {
     if (selectedGender == Gender.female) {
-      if (femaleCardColour == inactivateColour) {
-        femaleCardColour = colorNumber;
-        maleCardColour = inactivateColour;
+      if (femaleCardColour == kInactivateColour) {
+        femaleCardColour = kActivateColour;
+        maleCardColour = kInactivateColour;
 
       } else {
-        femaleCardColour = inactivateColour;
+        femaleCardColour = kInactivateColour;
       }
     }
     if (selectedGender == Gender.male ) {
-      if (maleCardColour == inactivateColour) {
-        maleCardColour = colorNumber;
-        femaleCardColour = inactivateColour;
+      if (maleCardColour == kInactivateColour) {
+        maleCardColour = kActivateColour;
+        femaleCardColour = kInactivateColour;
       } else {
-        maleCardColour = inactivateColour;
+        maleCardColour = kInactivateColour;
       }
     }
   }
@@ -62,7 +59,7 @@ class _InputPageState extends State<InputPage> {
                           selectedGender = Gender.female;
                         });
                       },
-                      colour : selectedGender == Gender.female ? colorNumber : inactivateColour,
+                      colour : selectedGender == Gender.female ? kActivateColour : kInactivateColour,
                       cardChild: cardChildWidget(icon: FontAwesomeIcons.mars, colour: Colors.pink, textName: 'Female',),
                     )
                 ),
@@ -73,31 +70,38 @@ class _InputPageState extends State<InputPage> {
                           selectedGender = Gender.male;
                         });
                       },
-                      colour : selectedGender == Gender.male ? colorNumber : inactivateColour,
+                      colour : selectedGender == Gender.male ? kActivateColour : kInactivateColour,
                       cardChild: cardChildWidget(icon: FontAwesomeIcons.facebook, colour: Colors.pink, textName: 'Male',),
                     )
                 ),
               ],
             )),
             Expanded(
-                child: ReusableCard(colour : colorNumber)
+                child: ReusableCard(
+                  colour : kActivateColour,
+                  cardChild: Column(
+                    children: <Widget>[
+                      Text('Height'),
+                    ],
+                  ),
+                )
             ),
             Expanded(child: Row(
               children: <Widget>[
                 Expanded(
-                    child: ReusableCard(colour : colorNumber)
+                    child: ReusableCard(colour : kActivateColour)
                 ),
                 Expanded(
-                    child: ReusableCard(colour : colorNumber)
+                    child: ReusableCard(colour : kActivateColour)
                 ),
               ],
             )),
 
             Container(
-              color: bottomColor,
+              color: kBottomContainerColor,
               margin: EdgeInsets.only(top: 10.0),
               width: double.infinity,
-              height: bottomContainerHeight,
+              height: kBottomContainerHeight,
             ),
           ],
         )
